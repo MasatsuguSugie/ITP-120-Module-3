@@ -1,0 +1,97 @@
+package itp120mod3;
+
+import java.util.Scanner;
+
+public class RPSV2 {
+	public static void main(String[] args) {
+		//set up scanner
+		Scanner scan = new Scanner(System.in);
+		
+		//intialize variables and counters
+		int comNum;
+		String comChoice = null;
+		String playerChoice = null;
+		//counters for wins
+		int comWins = 0;
+		int playerWins = 0;
+		//start counter for number of tries at 0
+		int tries = 0;
+		
+		//Top of for loop, while tries is less than 5, run inner loops
+		for (int i = 0; tries < 5; tries++) {
+			
+			//generate random number 1 to 3
+			comNum = (int) (Math.random() * 3 + 1);
+			
+			//assign game value to Computer's choice based on number generated 
+			if (comNum == 1)
+				comChoice = "rock";
+			if (comNum == 2)
+				comChoice = "paper";
+			if (comNum == 3)
+				comChoice = "scissors";
+			
+			//Get user choice
+			System.out.println("Enter rock, paper, or scissors:");
+			playerChoice = scan.nextLine();
+			
+			//print player choice to console
+			System.out.println("Player chose " + playerChoice);
+			
+			//print computer choice to console
+			System.out.println("Computer chose " + comChoice);
+			
+			//start of if loops to determine winners
+			//if player chooses rock, here are the rules
+			if (playerChoice.equalsIgnoreCase("rock")) {
+				if (comNum == 1) {
+					System.out.println("It's a tie! No one wins!");
+				}
+				if (comNum == 2) {
+					comWins++;
+					System.out.println("Paper covers rock! Computer wins!");
+				}
+				if (comNum == 3) {
+					playerWins++;
+					System.out.println("Rock crushes scissors! Player wins!");
+				}
+			}
+			//if player chooses paper, here are the rules
+			if (playerChoice.equalsIgnoreCase("paper")) {
+				if (comNum == 1) {
+					playerWins++;
+					System.out.println("Paper covers Rock! Player wins!");
+				}
+				if (comNum == 2) {
+					System.out.println("It's a tie! No one wins!");
+				}
+				if (comNum == 3) {
+					comWins++;
+					System.out.println("Scissors cuts paper! Computer wins!");
+				}
+			}
+			
+			//if player chooses scissors, here are the rules
+			if (playerChoice.equalsIgnoreCase("scissors")) {
+				if (comNum == 1) {
+					comWins++;
+					System.out.println("Rock crushes scissors! Computer wins!");
+				}
+				if (comNum == 2) {
+					playerWins++;
+					System.out.println("Scissors cuts paper! Player wins!");
+				}
+				if (comNum == 3) {
+					System.out.println("It's a tie! No one wins!");
+				}
+			}
+		}
+		//compare counters to determine the overall winner and print to console
+		if (playerWins > comWins)
+			System.out.println("The player won " + playerWins + ", the computer won " +
+					comWins + ". Player is the Grandchampion!");
+		if (comWins > playerWins)
+			System.out.println("The player won " + playerWins + ", the computer won " +
+					comWins + ". Computer is the Grandchampion!");
+	}
+}
