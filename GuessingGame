@@ -1,0 +1,40 @@
+package itp120mod3;
+
+import java.util.Scanner;
+
+public class GuessingGame {
+
+	public static void main(String[] args) {
+		Scanner scan = new Scanner(System.in);
+
+		String more = "yes";
+		while (more.equalsIgnoreCase("yes")) {
+
+			System.out.println("Guess the number (1-20)");
+			int userGuess = scan.nextInt();
+			int compNumber = (int) (Math.random() * 20) + 1;
+
+			int totalGuesses = 1;
+
+			while (userGuess != compNumber) {
+
+				if (userGuess < compNumber)
+					System.out.println("Your guess was low.  Guess again. ");
+
+				else if (userGuess > compNumber)
+					System.out.println("Your guess was high.  Guess again. ");
+
+				if (userGuess != compNumber)
+					userGuess = scan.nextInt();
+				totalGuesses++;
+			}
+
+			System.out.println("You are correct! It took you " + totalGuesses
+					+ " guesses.");
+			scan.nextLine();
+			System.out.println("Do you want to play again (yes or no)");
+			more = scan.nextLine();
+
+		}
+	}
+}
