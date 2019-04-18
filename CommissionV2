@@ -1,0 +1,72 @@
+package itp120mod3;
+
+import java.text.NumberFormat;
+import java.util.Scanner;
+
+public class CommissionV2 {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		Scanner scan = new Scanner(System.in);
+		
+		//number format
+		NumberFormat nf = NumberFormat.getCurrencyInstance();
+		
+		//initialize sale variable
+		double sale = 0;
+		
+		//initialize counters
+		double totalSales = 0;
+		int numSales = 0;
+
+		//top of while loop with sentinel condition  
+		while (sale != -999) {
+			
+			//initialize variables
+			double base = 200;
+			double total;
+			double com1 = 0;
+			double com2 = 0;
+			double com3 = 0;
+			double comTotal = 0;
+			
+			//get sale figure from user or sentinel figure
+			System.out.println("Please enter Sale. (-999 to quit)");
+			sale = scan.nextDouble();
+			
+			//if conditions for bracketed commision rates
+			if (sale > 500 && sale <= 1000)
+				com1 = (500 - sale) * -.03;
+			if (sale > 500 && sale >= 1000)
+				com1 = 500 * .03;
+			if (sale > 1000 && sale <= 3000)
+				com2 = (1000 - sale) * -.05;
+			if (sale > 1000 && sale >= 3000)
+				com2 = 2000 * .05;
+			if (sale >= 3000)
+				com3 = (3000 - sale) * -.08;
+			//if sentinel value is entered, exit loop and continue
+			if (sale == -999)
+				break;
+			
+			//figure totals and increase counter
+			comTotal = com1 + com2 + com3;
+			total = comTotal + base;
+			numSales++;
+			totalSales += total;
+			
+			//print instance totals to console
+			System.out.println("You earned " + nf.format(comTotal)
+					+ " in commission" + " for a total " + nf.format(total)
+					+ " salary.");
+
+		}
+		//Once sentinel value is entered, exit while loop and print 
+		//total number of employees and the total of all sales to console
+		System.out.println("The number of employees is " + numSales
+				+ " and the total" + " payout is " + nf.format(totalSales)
+				+ ".");
+
+	}
+
+}
