@@ -1,0 +1,59 @@
+package itp120mod3;
+
+import java.text.NumberFormat;
+
+public class RetailItem {
+	NumberFormat nf = NumberFormat.getCurrencyInstance();
+	
+	private String description;
+	private int unitsOnHand;
+	private double price;
+	
+	public RetailItem(){
+		
+	}
+	
+	public RetailItem(String d, int u, double p){
+		description = d;
+		unitsOnHand = u;
+		price = p;
+	}
+	
+	public String ToString(){
+		NumberFormat nf = NumberFormat.getCurrencyInstance();
+		return "The inventory currently has " + unitsOnHand + " " + description + " which costs " 
+				+ nf.format(price)+ " for each unit  for a total of " + nf.format(cost());
+	}
+	
+	public double cost() {
+		return unitsOnHand * price;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public int getUnitsOnHand() {
+		return unitsOnHand;
+	}
+
+	public void setUnitsOnHand(int unitsOnHand) {
+		this.unitsOnHand = unitsOnHand;
+	}
+
+	public double getPrice() {
+		return price;
+	}
+
+	public void setPrice(double price) {
+		this.price = price;
+	}
+	
+
+	
+
+}
