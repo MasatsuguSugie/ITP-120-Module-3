@@ -1,0 +1,98 @@
+package itp120mod3;
+import java.util.Scanner;
+
+
+public class RPSSwitch {
+
+	public static void main(String[] args) {
+		Scanner scan = new Scanner (System.in);
+		// To do: Write a program named RPS.java. This is the old rock, paper, scissors game.  Follow these steps:
+		String computerChoiceLang;
+		String userChoiceLang = "";
+		int userWins = 0;
+		int computerWins = 0;
+		int count = 0;
+		
+		while (count < 5) {
+			// a. When the program begins, a random number in the range of 1
+			// through 3 is generated for the computer choice. 1=rock 2=paper
+			// 3=scissors.
+			int computerChoice = (int) ((Math.random() * 3) + 1);
+			if (computerChoice == 1) {
+				computerChoiceLang = "rock";
+			} else if (computerChoice == 2) {
+				computerChoiceLang = "paper";
+			} else {
+				computerChoiceLang = "scissors";
+			}
+
+			// b. Ask the user for their choice as the words “rock”, “paper” or
+			// “scissors”.
+			System.out.println("Enter your choice: Rock, Paper, or Scissors:");
+			userChoiceLang = scan.nextLine();
+
+			while ((!userChoiceLang.equalsIgnoreCase("rock"))
+					&& (!userChoiceLang.equalsIgnoreCase("paper"))
+					&& (!userChoiceLang.equalsIgnoreCase("scissors"))) {
+				System.out
+						.println("Invalid. Enter your choice: Rock, Paper, or Scissors:");
+				userChoiceLang = scan.nextLine();
+
+			}
+			// c. Display the computer’s choice.
+			System.out.println("The computer selected " + computerChoiceLang
+					+ ".");
+			// d. Select a winner according to the following rules:
+			// a. If one player chooses rock and the other is scissors, rock
+			// smashes scissors and wins
+			// b. If one player chooses scissors and the other player chooses
+			// paper, scissors cuts papers so scissors wins
+			// c. If one player chooses paper and the other chooses rock, paper
+			// wraps rock and paper wins
+			// d. if both players make the same choice, the game continues and
+			// neither wins that round
+			switch (computerChoice) {
+			case 1:
+				if (userChoiceLang.equalsIgnoreCase("rock")) {
+					System.out.println("You tied!");
+				} else if (userChoiceLang.equalsIgnoreCase("paper")) {
+					System.out.println("You win!");
+					userWins++;
+				} else {
+					System.out.println("You lost.");
+					computerWins++;
+				}
+				break;
+			case 2:
+				if (userChoiceLang.equalsIgnoreCase("rock")) {
+					System.out.println("You lost.");
+					computerWins++;
+				} else if (userChoiceLang.equalsIgnoreCase("paper")) {
+					System.out.println("You tied!");
+				} else {
+					System.out.println("You win!");
+					userWins++;
+				}
+				break;
+			case 3:
+				if (userChoiceLang.equalsIgnoreCase("rock")) {
+					System.out.println("You win!");
+					userWins++;
+				} else if (userChoiceLang.equalsIgnoreCase("paper")) {
+					System.out.println("You lost.");
+					computerWins++;
+				} else {
+					System.out.println("You tied.");
+				}
+				break;
+			}
+			count++;
+			// e. Repeat the loop five times and then indicate how many times
+			// the computer won, how many times the user won, and the grand
+			// winner.
+		}
+		System.out.println("You won " + userWins + " times, and the computer won " + computerWins + " times.");
+
+	}
+
+}
