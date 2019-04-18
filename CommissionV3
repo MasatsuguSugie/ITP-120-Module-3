@@ -1,0 +1,103 @@
+package itp120mod3;
+
+import java.util.Scanner;
+
+import java.text.NumberFormat;
+
+public class CommissionV3
+{
+	public static void main(String[] args)
+	{
+		int base = 200;
+		double bracket3 = 0; // The amount in the 3% commission bracket
+		double bracket5 = 0; // The amount in the 5% commission bracket
+		double bracket8 = 0; // The amount in the 8% commission bracket
+		double commissionAmt = 0;
+		double thisPay = 0;
+		double payroll = 0;
+		
+		NumberFormat f = NumberFormat.getCurrencyInstance();
+		
+		System.out.println("COMMISSION CALCULATOR\n---------------------");
+		System.out.println("Enter the sales for each salesperson.\n");
+		
+		System.out.print("Enter the 1st sales amount (-999 to end): ");
+		
+		Scanner scan = new Scanner(System.in);
+		double userInput = scan.nextDouble();
+		scan.nextLine();
+		
+		int numbers = (userInput == -999) ? 0 : 1;
+		// If -999 is entered immediately, then no salespeople have been processed.
+		// Otherwise, one salesperson has been processed at this point.
+		
+		while (userInput != -999)
+		{
+			
+			if (userInput >= 3000)
+			{
+				bracket8 = (userInput % 3000);
+				bracket5 = 2000;
+				bracket3 = 500;
+			}
+			else if (userInput >= 1000)
+			{
+				bracket8 = 0;
+				bracket5 = (userInput % 1000);
+				bracket3 = 500;
+			}
+			else if (userInput >= 500)
+			{
+				bracket8 = 0;
+				bracket5 = 0;
+				bracket3 = (userInput % 500);
+			}
+			
+			commissionAmt = (bracket8 * 0.08) + (bracket5 * 0.05) + (bracket3 * 0.03);
+			thisPay = base + commissionAmt;
+			
+			System.out.format("\nEmployee salary is " + f.format(thisPay));
+			System.out.format(" of which " + f.format(commissionAmt));
+			System.out.println(" is commission.");
+			
+			payroll += thisPay;
+			
+			numbers++;
+
+			/* User interface is important. */
+			
+			System.out.print("\nEnter the " + numbers);
+			if ((numbers >= 11) && (numbers <= 13))
+				System.out.print("th");
+			else switch (numbers % 10)
+				{
+					case 1: System.out.print("st");
+							break;
+					case 2: System.out.print("nd");
+							break;
+					case 3: System.out.print("rd");
+							break;
+					default: System.out.print("th");
+							break;
+				}
+			System.out.print(" sales amount (-999 to end): ");
+			userInput = scan.nextDouble();
+			scan.nextLine();
+			
+			if (userInput == -999)	// if the user has terminated processing,
+				numbers--;			// then don't count the termination as a valid value.
+		}
+		
+		System.out.print("\n");
+		System.out.print("-------------------------");
+		System.out.print(" TOTALS ");
+		System.out.print("-------------------------");
+		System.out.print("\n\n");
+		System.out.print("You entered sales for " + numbers + " salespeople.");
+		System.out.print("\n\n");
+		System.out.format("Your payroll is: " + f.format(payroll) + "\n");
+		
+		
+	}
+
+}
