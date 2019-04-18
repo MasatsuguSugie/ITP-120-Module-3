@@ -1,0 +1,61 @@
+package itp120mod3;
+
+import java.util.Scanner;
+
+public class LargeSmallV2 {
+
+	public static void main(String[] args) {
+
+		// declare and initialize variables
+		int userNum;
+		int highNum;
+		int lowNum;
+		int totalNumInput;
+		String moreNumsToEnter;
+		
+		// declare variable of scanner class to capture input
+		Scanner input = new Scanner(System.in);
+		
+		// prompt user for first values & assign to high & low num variables
+		System.out.print("Please Enter A Number : ");
+		userNum = input.nextInt();
+		highNum = userNum;
+		lowNum = userNum;
+		totalNumInput = 1;
+		
+		// prompt user to determine if they have additional numbers to enter
+		System.out.print("Do you want to enter another number (yes or no)? ");
+		moreNumsToEnter = input.nextLine();
+		System.out.println();
+		
+		// loop for continued entry of numbers until user is finished
+		while (moreNumsToEnter.equals("yes")) {
+			
+			// prompt user for another number
+			System.out.print("Please Enter A Number : ");
+			userNum = input.nextInt();
+			
+			// compare to high & low number to determine if values change
+			if (userNum > highNum) {
+				highNum = userNum;
+			}
+			
+			if (userNum < lowNum) {
+				lowNum = userNum;
+			}
+			
+			// increment total number entered
+			totalNumInput = totalNumInput + 1;
+			
+			// prompt user to determine if they have additional numbers to enter
+			System.out.print("Do you want to enter another number (yes or no)? ");
+			moreNumsToEnter = input.nextLine();
+			System.out.println();
+		}
+		
+		// display final output
+		System.out.println("You entered " + totalNumInput + " numbers.");
+		System.out.println("Lowest Number : " + lowNum);
+		System.out.println("Highest Number: " + highNum);
+	}
+}
