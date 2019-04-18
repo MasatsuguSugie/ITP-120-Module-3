@@ -1,0 +1,69 @@
+package itp120mod3;
+
+import java.util.Scanner;
+import java.text.NumberFormat;
+
+public class Commission {
+
+	public static void main(String[] args) {
+
+		// create an instance of the Numberformat class
+		NumberFormat money = NumberFormat.getCurrencyInstance();
+
+		Scanner scan = new Scanner(System.in);
+
+		// Declare and initialize counter and accumulators
+		int numSalesPeople = 0;
+		double grandTotal = 0;
+
+		// Declare variables
+		double LEVELONE = .03;
+		double LEVELTWO = .05;
+		double LEVELTHREE = .08;
+		double BASESALARY = 200;
+
+		// Start Loop
+		double salesAmount = 0;
+		while (salesAmount != -999) {
+
+			// Prompt user for amount of sales
+			System.out.println("Enter sales amount (-999 to end): ");
+			salesAmount = scan.nextDouble();
+
+			double commission = 0;
+			double amountEarned = 0;
+
+			// Calculate commission
+			if (salesAmount < 500)
+				commission = 0;
+			else if (salesAmount < 1000)
+				commission = (salesAmount - 500) * LEVELONE;
+			else if (salesAmount < 3000)
+				commission = 500 * LEVELONE + (salesAmount - 1000) * LEVELTWO;
+			else if (salesAmount >= 3000)
+				commission = 500 * LEVELONE + 2000 * LEVELTWO
+						+ (salesAmount - 3000) * LEVELTHREE;
+
+			amountEarned = BASESALARY + commission;
+
+			if (salesAmount != -999) {
+				// Add to the counter and accumulators
+				numSalesPeople = numSalesPeople + 1;
+				grandTotal = grandTotal + amountEarned;
+
+				// Output the total amount earned
+				System.out.println("You earned " + money.format(commission)
+						+ " in commission for a total "
+						+ money.format(amountEarned) + " salary.");
+			}
+
+			// end Loop
+		}
+
+		// Output totals
+		System.out.println("The number of employees is " + numSalesPeople
+				+ " and the total payout is " + money.format(grandTotal));
+
+	}
+
+}
