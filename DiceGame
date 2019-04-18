@@ -1,0 +1,70 @@
+package itp120mod3;
+//my pseudocode:
+	//computer rolls die
+	//player rolls die
+	//highest # wins
+	//repeat 99 times
+
+	//if computer rolls higher number than the player,
+		//then the computer wins (keep track of the number of wins--this is where my program falls to pieces!)
+	//If the player rolls higher than the computer, 
+		//then the player wins (keep track of the number of wins)
+
+	//print out the number of wins for computer and player
+	//print out the number of ties
+	//print out the grand winner with total wins and ties
+public class DiceGame {
+
+	public static void main(String[] args) {
+		int compWins=0;	
+		int userWins=0;
+		int ties=0;
+		
+		for(int index = 0; index <100; index++) {
+			
+		int c = (int) (Math.random() * 6) + 1;
+		int p = (int) (Math.random() * 6) + 1;
+		
+					
+		System.out.println("Computer's number: " + c);
+		System.out.println("Player's number: " + p);
+
+		
+		if (c > p){
+			compWins = compWins + 1;
+			System.out.println("Computer wins!");
+			
+		}
+		else if (p > c){
+			userWins = userWins + 1;
+			System.out.println("Player wins!");
+		}
+		else{
+			ties = ties + 1;
+			System.out.println("It's a tie!");
+		}
+		System.out.println();
+		
+			
+		}
+		if (compWins > userWins)
+			System.out.println("The computer was the grand winner with " + compWins + " wins." + "\nThe player" +
+					" had " + userWins + " wins.");
+			
+		
+			else if (userWins++ > compWins++)
+				System.out.println("The player was the grand winner with " + userWins++ + " wins." + "\nThe computer" +
+						" had " + compWins + " wins.");
+				
+			else
+				System.out.print("No one wins! \nThe computer had " + compWins + " wins " +
+						"\nThe player had " + userWins + " wins.");
+			System.out.println("There were " + ties + " ties.");
+	}				
+		
+}
+	
+	
+
+			
+		
