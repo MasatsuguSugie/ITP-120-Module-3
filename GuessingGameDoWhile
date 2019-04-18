@@ -1,0 +1,59 @@
+package itp120mod3;
+
+import java.util.Scanner;
+
+public class GuessingGameDoWhile {
+
+	public static void main(String[] args) {
+
+		// declare and initialize variables
+		int randomNum;
+		int userGuess;
+		int numGuesses;
+		String playAgain;
+		
+		// declare variable of scanner class to capture input
+		Scanner input = new Scanner(System.in);
+	
+		// loop to allow users to decide to play additional games
+		do {
+		
+			// initialize or reset numGuesses for each game
+			numGuesses = 0;
+			
+			// generate random number between 1 - 20
+			randomNum = (int) (Math.random()*20) +1;
+			
+			// loop to capture guesses & provide feedback until user guesses correct
+			do { 
+				// prompt user for a guess
+				System.out.print("Guess the Number (1 - 20) : ");
+				userGuess = input.nextInt();
+		
+				// compare the user guess to the random number & provide hint to user
+				if (userGuess > randomNum) {
+					System.out.println("Your guess was high.  Guess again.");
+					System.out.println();
+				} else if (userGuess < randomNum) {
+					System.out.println("Your guess was low.  Guess again.");
+					System.out.println();
+				}
+				numGuesses = numGuesses + 1;
+			}
+			while (userGuess != randomNum);
+
+			// display results of round of guessing
+			System.out.println("You guessed right!  It took you " + numGuesses +
+								" guesses.");
+			System.out.println();
+
+			// prompt user to play another round of the game
+			System.out.print("Do you want to play again? (yes or no) : ");
+			playAgain = input.next();
+			System.out.println();	
+		}
+		while (playAgain.equals("yes"));
+
+		System.out.println("Thanks for playing!");
+	}
+}
