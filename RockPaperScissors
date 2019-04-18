@@ -1,0 +1,62 @@
+package itp120mod3;
+
+import java.util.Scanner;
+
+public class RockPaperScissors {
+
+	public static void main(String[] args) {
+		Scanner scan = new Scanner(System.in);
+
+		// set counters
+		int uWins = 0;
+		int cWins = 0;
+		// begin loop
+		for (int i = 0; i < 5; i++) {
+			// get computer choice
+			int computer = ((int) (Math.random() * 3 + 1));
+			String comp = "";
+			if (computer == 1) {
+				comp = "rock";
+			} else if (computer == 2)
+				comp = "paper";
+			else
+				comp = "scissors";
+
+			// get user choice
+			System.out
+					.println("Please enter rock, paper, or scissors using only lower case letters");
+			String user = scan.nextLine();
+
+			// find the winner
+			System.out.println("The computer's choice was " + comp);
+			System.out.println("The user's choice was " + user);
+			if (user.equals("rock") && comp.equals("paper")) {
+				cWins++;
+				System.out.println("Paper covers rock.\n"
+						+ "The computer wins!");
+			} else if (user.equals("paper") && comp.equals("scissors")) {
+				cWins++;
+				System.out.println("Scissors cuts paper.\n"
+						+ "The computer wins!");
+			} else if (user.equals("scissors") && comp.equals("rock")) {
+				cWins++;
+				System.out.println("Rock crushes scissors.\n"
+						+ "The computer wins!");
+			} else if (user.equals("rock") && comp.equals("scissors")) {
+				uWins++;
+				System.out.println("Rock crushes scissors.\n"
+						+ "The user wins!");
+			} else if (user.equals("scissors") && comp.equals("paper")) {
+				uWins++;
+				System.out.println("Scissors cuts paper.\n" + "The user wins!");
+			} else if (user.equals("paper") && comp.equals("rock")) {
+				uWins++;
+				System.out.println("Paper covers rock.\n" + "The user wins!");
+			} else
+				System.out.println("It is a tie.  No one wins!!");
+		} // end of for loop
+		System.out.println("The user won " + uWins
+				+ " times and the computer won " + cWins + " times");
+	} // end main
+
+}
