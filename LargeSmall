@@ -1,0 +1,44 @@
+package itp120mod3;
+
+import java.util.Scanner;
+
+public class LargeSmall {
+	public static void main(String[] args) {
+		int small = Integer.MAX_VALUE;
+		int large = Integer.MIN_VALUE;
+		int userNum;
+		Scanner scan = new Scanner(System.in);
+		int numTimes=0;
+
+		String more = "yes";
+		while (more.equalsIgnoreCase("yes")) {
+
+			System.out.println("Please enter a number ");
+			userNum = scan.nextInt();
+			numTimes++;
+			if (userNum < small)
+				small = userNum;
+			if (userNum > large)
+				large = userNum;
+
+			scan.nextLine();
+			System.out.println("More numbers? (yes or no)");
+			more = scan.nextLine();
+
+		}
+
+		if (small == Integer.MAX_VALUE) {
+			System.out.println("Lowest number: N/A");
+		}
+
+		if (large == Integer.MIN_VALUE) {
+			System.out.println("Highest number: N/A");
+		}
+
+		else {
+			System.out.print("You entered " + numTimes + " numbers. Lowest number: " + small);
+			System.out.println("    Highest number: " + large);
+		}
+	}
+
+}
