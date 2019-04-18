@@ -1,0 +1,83 @@
+package itp120mod3;
+
+import java.util.Scanner;
+
+public class RockPaperScissorsWithMethods {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		String playerChoice = userChoice();
+		String compChoice = computerChoice();
+		determineWinner(playerChoice,compChoice);
+
+	}//End main
+	
+	public static String computerChoice(){
+		int compChoice = ((int)(Math.random() * 3 + 1));
+		
+		if(compChoice ==1){
+			return "rock";
+		}
+		else if(compChoice == 2)
+			return "paper";
+		else
+			return "scissors";
+	}
+	
+	public static String userChoice(){
+		Scanner scan = new Scanner(System.in);
+		System.out.println("Please enter rock, paper, or scissors using only lower case letters");
+		return scan.nextLine();
+	}
+	
+	public static boolean isValidChoice(String r){
+		if(r.equals("rock") || r.equals("paper") || r.equals("scissors")){
+			return true;
+		}
+		else 
+			return false;
+	}
+	
+	public static void determineWinner(String u, String c){
+		int winner = 0;
+		if(isValidChoice(u)){
+			while(winner == 0){
+				System.out.println("The computer's choice was " + c);
+				System.out.println("The user's choice was " + u);
+				if(u.equals(c)){
+					System.out.println("It's a tie game!");
+					c = computerChoice();
+					u = userChoice();
+				}
+				else if(u.equals("rock") && c.equals("paper")){
+					winner =1;
+					System.out.println("Paper covers rock.\n" + "The computer wins!");
+				}
+				else if(u.equals("paper") && c.equals("scissors")){
+					winner =1;
+					System.out.println("Scissors cuts paper.\n" + "The computer wins!");
+				}
+				else if(u.equals("scissors") && c.equals("rock")){
+					winner =1;
+					System.out.println("Rock crushes scissors.\n" + "The computer wins!");
+				}
+				else if(u.equals("rock") && c.equals("scissors")){
+					winner =2;
+					System.out.println("Rock crushes scissors.\n" + "The user wins!");
+				}
+				else if(u.equals("scissors") && c.equals("paper")){
+					winner =2;
+					System.out.println("Scissors cuts paper.\n" + "The user wins!");
+				}
+				else if(u.equals("paper") && c.equals("rock")){
+					winner =2;
+					System.out.println("Paper covers rock.\n" + "The user wins!");
+				}
+			}
+		}
+		else{
+			System.out.println("It's rock, paper, scissors NOT rock, paper, scissors, " + u + 
+					". The computer wins by default");
+		}
+	}
+}
